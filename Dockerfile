@@ -2,7 +2,7 @@ FROM node:lts-buster
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y locales git zip unzip vim curl net-tools dnsutils netcat less python3-pip sudo
+RUN apt-get update && apt-get install -y locales git zip unzip vim curl iproute2 dnsutils netcat less python3-pip sudo
 RUN sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=(ALL:ALL) NOPASSWD:ALL/' /etc/sudoers \
  && usermod -aG sudo node
 RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && update-locale LANG=ja_JP.UTF-8
