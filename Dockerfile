@@ -14,7 +14,9 @@ RUN curl -sL "https://github.com/weaveworks/eksctl/releases/latest/download/eksc
   ([[ $(arch) == aarch64 ]] && echo arm64) || ([[ $(arch) == x86_64 ]] && echo amd64) \
  ).tar.gz" | tar xz -C /tmp \
  && mv /tmp/eksctl /usr/local/bin
-RUN npm i -g npm && npm i -g serverless
+RUN npm i -g npm
+RUN npm i -g aws-sdk serverless
 RUN aws --version && awslogs --version && eksctl version
+RUN chown -R node. /usr/local/lib/node_modules
 USER 1000
 CMD ["bash", "-c", "while true; do sleep 600; done"]
