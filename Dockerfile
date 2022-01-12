@@ -15,8 +15,9 @@ RUN curl -sL "https://github.com/weaveworks/eksctl/releases/latest/download/eksc
  ).tar.gz" | tar xz -C /tmp \
  && mv /tmp/eksctl /usr/local/bin
 RUN npm i -g npm
-RUN npm i -g aws-sdk serverless
-RUN aws --version && awslogs --version && eksctl version
-RUN chown -R node. /usr/local/lib/node_modules
+RUN chown node. /usr/local/lib/node_modules && chmod g+w /usr/local/bin && chown :node /usr/local/bin
+RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 USER 1000
-CMD ["bash", "-c", "while true; do sleep 600; done"]
+RUN npm i -g aws-sdk serverless @aws-amplify/cli
+RUN pip3 install aws-sam-cli
+RUN aws --version && awslogs --version && eksctl version && serverless --version && amplify version && PATH="$PATH:~/.local/bin" sam --version
