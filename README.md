@@ -1,5 +1,7 @@
 # run with container
 
+debian bullseye based.
+
 ## docker build and run
 
 ```bash
@@ -23,7 +25,7 @@ npm i -g npm@latest
 ### serverless
 
 ```
-npm i serverless
+npm i -g serverless
 serverless --version
 ```
 
@@ -39,4 +41,11 @@ sam --version
 ```
 npm i -g @aws-amplify/cli
 amplify version
+```
+
+### jp - JMESPath
+
+```
+npm i -g @jobscale/jp
+jp --version
 ```
