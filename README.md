@@ -40,7 +40,14 @@ sam --version
 
 ```
 npm i -g @aws-amplify/cli
-amplify version
+amplify --version
+```
+
+### vue v3
+
+```
+npm i -g @vue/cli
+vue --version
 ```
 
 ### jp - JMESPath
