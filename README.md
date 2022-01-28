@@ -14,6 +14,12 @@ docker start node-aws && docker exec -it node-aws bash
 
 ## More installation
 
+### npm
+
+```
+npm i -g npm@latest
+```
+
 ### serverless
 
 ```

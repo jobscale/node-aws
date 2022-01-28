@@ -15,7 +15,7 @@ RUN curl -sL "https://github.com/weaveworks/eksctl/releases/latest/download/eksc
  ).tar.gz" | tar xz -C /tmp \
  && mv /tmp/eksctl /usr/local/bin
 RUN npm i -g npm
-RUN chown node. /usr/local/lib/node_modules && chmod g+w /usr/local/bin && chown :node /usr/local/bin
+RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
 USER 1000
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 COPY . .
