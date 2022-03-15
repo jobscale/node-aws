@@ -2,7 +2,7 @@
 set -eu
 
 [[ -x /etc/init.d/ssh ]] && /etc/init.d/ssh start
-[[ -x /etc/init.d/docker ]] && /etc/init.d/docker start
+[[ -x /etc/init.d/docker ]] && /usr/sbin/dockerd &
 
 # Run command with node if the first argument contains a "-" or is not a system command. The last
 # part inside the "{}" is a workaround for the following bug in ash/dash:
