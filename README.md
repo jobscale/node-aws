@@ -14,6 +14,20 @@ docker build . -t local/node-aws \
 docker start node-aws && docker exec -it node-aws bash
 ```
 
+## Docker in Docker
+
+### run dind
+
+```
+docker run --privileged --restart always --name dind -it ghcr.io/jobscale/node-aws:dind bash
+```
+
+### test dind
+
+```
+./daemon-test
+```
+
 ## More installation
 
 ### npm
