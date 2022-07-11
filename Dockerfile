@@ -10,10 +10,6 @@ RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && loca
 RUN curl -sL "https://awscli.amazonaws.com/awscli-exe-linux-$(arch).zip" -o "awscliv2.zip" \
  && unzip awscliv2.zip && ./aws/install && rm -fr aws awscliv2.zip
 RUN pip3 install awslogs
-RUN curl -sL "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_$( \
-  ([[ $(arch) == aarch64 ]] && echo arm64) || ([[ $(arch) == x86_64 ]] && echo amd64) \
- ).tar.gz" | tar xz -C /tmp \
- && mv /tmp/eksctl /usr/local/bin
 RUN npm i -g npm
 RUN npm version
 RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
