@@ -7,7 +7,7 @@ name: Docker dind
 
 on:
   schedule:
-    - cron: '16 17 * * *'
+    - cron: '16 18 * * *'
   push:
     branches: [ main ]
   pull_request:
