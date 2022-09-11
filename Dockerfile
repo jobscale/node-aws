@@ -15,4 +15,5 @@ RUN npm version
 RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
 USER 1000
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
+RUN echo "which aws_completer && complete -C aws_completer aws" >> /home/node/.bashrc
 COPY . .
