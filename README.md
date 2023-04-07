@@ -48,6 +48,9 @@ serverless --version
 ```
 pip install aws-sam-cli --user
 sam --version
+
+# upgrade
+pip install --upgrade aws-sam-cli --user
 ```
 
 ### amplify
