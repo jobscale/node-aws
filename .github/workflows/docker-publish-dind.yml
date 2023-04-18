@@ -6,8 +6,12 @@ name: Docker dind
 # documentation.
 
 on:
+  schedule:
+    - cron: '57 17 * * *'
   push:
     branches: [ main ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ main ]
 
