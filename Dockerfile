@@ -1,8 +1,8 @@
-FROM node:lts-bullseye
+FROM node:lts-bullseye-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y locales curl git vim zip unzip iproute2 dnsutils netcat \
+RUN apt-get update && apt-get install -y locales curl git vim unzip iproute2 dnsutils netcat \
     less tree jq python3-pip sudo
 RUN rm -fr /var/lib/apt/lists/*
 RUN usermod -aG sudo node && echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/40-users
