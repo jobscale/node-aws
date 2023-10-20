@@ -2,8 +2,9 @@ FROM node:lts-bookworm-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y locales curl git vim unzip iproute2 dnsutils netcat-openbsd \
-    less tree jq python3-pip sudo
+RUN apt-get update && apt-get install -y locales curl git vim unzip \
+  iproute2 dnsutils ncat netcat-openbsd \
+  less tree jq python3-pip sudo
 RUN rm -fr /var/lib/apt/lists/*
 RUN usermod -aG sudo node && echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/40-users
 RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && update-locale LANG=ja_JP.UTF-8 \
