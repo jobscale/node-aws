@@ -2,7 +2,7 @@ FROM node:lts-bookworm-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y locales curl git vim unzip iproute2 dnsutils netcat \
+RUN apt-get update && apt-get install -y locales curl git vim unzip iproute2 dnsutils netcat-openbsd \
     less tree jq python3-pip sudo
 RUN rm -fr /var/lib/apt/lists/*
 RUN usermod -aG sudo node && echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/40-users
@@ -14,7 +14,6 @@ RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin 
 
 USER node
 RUN npm i --location=global npm && npm version | xargs
-RUN pip3 install awslogs --user --no-warn-script-location
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 RUN echo "which aws_completer && complete -C aws_completer aws" >> /home/node/.bashrc
 COPY . .
