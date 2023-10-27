@@ -1,6 +1,6 @@
 # run with container
 
-debian bullseye based.
+debian bookworm based.
 
 ## docker build and run
 
