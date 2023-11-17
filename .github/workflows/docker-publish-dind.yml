@@ -58,6 +58,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
+            v${{ github.run_number }}-dind
             type=raw,value=dind
 
       # Build and push Docker image with Buildx (don't push on PR)
@@ -83,7 +84,7 @@ jobs:
           grep MH /proc/cpuinfo
           GIP=$(curl -s https://inet-ip.info/ip)
           echo "Global: $GIP"
-          DATA=$(echo "${{ steps.meta.outputs.labels }}" | sed -z -e 's/\n/\\n/g')
+          DATA=$(echo "${{ steps.meta.outputs.labels }}\n${{ steps.meta.outputs.tags }}" | sed -z -e 's/\n/\\n/g')
           curl -is -X POST -H 'Content-Type: application/json' \
           https://jsx.jp/api/slack \
           --data "{\"icon_emoji\":\":whale:\",\"username\":\"GitHub\",\"text\":\"$GIP\\n$DATA\"}" || echo
