@@ -5,7 +5,7 @@ debian bookworm based.
 ## docker build and run
 
 ```bash
-git clone git@github.com:jobscale/node-aws.git
+git clone https://github.com/jobscale/node-aws.git
 cd node-aws
 
 docker build . -t local/node-aws \
