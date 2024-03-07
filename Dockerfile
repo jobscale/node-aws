@@ -17,4 +17,4 @@ USER node
 RUN npm i --location=global npm && npm version | xargs
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 RUN echo "which aws_completer && complete -C aws_completer aws" >> /home/node/.bashrc
-COPY --chown node:node . .
+COPY --chown=node:node README.md .
