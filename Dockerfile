@@ -14,7 +14,7 @@ RUN curl -sL "https://awscli.amazonaws.com/awscli-exe-linux-$(arch).zip" -o "aws
 RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
 
 USER node
-RUN npm i --location=global npm && npm version | xargs
+RUN npm i -g npm@latest && npm version | xargs
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 RUN echo "which aws_completer && complete -C aws_completer aws" >> /home/node/.bashrc
 COPY --chown=node:node README.md .

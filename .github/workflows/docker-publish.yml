@@ -83,6 +83,8 @@ jobs:
           free -h
           df -h .
           grep MH /proc/cpuinfo
+          npm init -y
+          npm i @jobscale/totp
           GIP=$(curl -s https://inet-ip.info/ip)
           echo "Global: $GIP"
           DATA=$(echo "${{ steps.meta.outputs.labels }}\n${{ steps.meta.outputs.tags }}" | sed -z -e 's/\n/\\n/g')
