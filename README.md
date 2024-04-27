@@ -19,7 +19,11 @@ docker start node-aws && docker exec -it node-aws bash
 ### run dind
 
 ```
-docker run --privileged --restart always --name dind -it ghcr.io/jobscale/node-aws:dind bash
+docker run --privileged --name dind --restart always -p 2998:3000 \
+--ulimit nofile=128:256 --ulimit nproc=32:64 -it ghcr.io/jobscale/node-aws:dind bash
+
+docker run --privileged --name wetty --restart always -p 2998:3000 \
+--ulimit nofile=128:256 --ulimit nproc=32:64 -it ghcr.io/jobscale/wetty:dind bash
 ```
 
 ### test dind
