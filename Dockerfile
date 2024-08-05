@@ -16,7 +16,7 @@ RUN chown -R node. /usr/local/lib/node_modules \
  && chown -R :node /usr/local/share && chmod -R g+w /usr/local/share
 
 USER node
-RUN npm i -g npm@latest && npm version | xargs
+RUN npm version | xargs
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 RUN echo "which aws_completer && complete -C aws_completer aws" >> /home/node/.bashrc
 COPY --chown=node:node README.md .
