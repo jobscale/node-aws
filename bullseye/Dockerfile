@@ -11,10 +11,11 @@ RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && loca
  && echo -e "export LANG=ja_JP.UTF-8\nexport TZ=Asia/Tokyo\numask u=rwx,g=rx,o=rx" | tee -a /etc/bash.bashrc
 RUN curl -sL "https://awscli.amazonaws.com/awscli-exe-linux-$(arch).zip" -o "awscliv2.zip" \
  && unzip awscliv2.zip && aws/install && rm -fr aws awscliv2.zip
-RUN chown -R node. /usr/local/lib/node_modules && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
+RUN chown -R node. /usr/local/lib/node_modules \
+ && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin
 
 USER node
-RUN npm i -g npm@latest && npm version | xargs
+RUN npm version | xargs
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 RUN echo "which aws_completer && complete -C aws_completer aws" >> /home/node/.bashrc
 COPY --chown=node:node README.md .
