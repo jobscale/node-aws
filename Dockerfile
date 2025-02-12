@@ -11,9 +11,10 @@ RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && loca
  && echo -e "export LANG=ja_JP.UTF-8\nexport TZ=Asia/Tokyo\numask u=rwx,g=rx,o=rx" | tee -a /etc/bash.bashrc
 RUN curl -sL "https://awscli.amazonaws.com/awscli-exe-linux-$(arch).zip" -o "awscliv2.zip" \
  && unzip awscliv2.zip && aws/install && rm -fr aws awscliv2.zip
-RUN chown -R node. /usr/local/lib/node_modules \
- && chown -R :node /usr/local/bin && chmod -R g+w /usr/local/bin \
- && chown -R :node /usr/local/share && chmod -R g+w /usr/local/share
+RUN usermod -G staff node \
+ && chown -R node:staff /usr/local/lib/node_modules \
+ && chown -R :staff /usr/local/bin && chmod -R g+w /usr/local/bin \
+ && chown -R :staff /usr/local/share && chmod -R g+w /usr/local/share
 
 USER node
 RUN npm version | xargs
