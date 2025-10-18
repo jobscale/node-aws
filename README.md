@@ -1,6 +1,7 @@
 # run with container
 
-debian bookworm based.
+debian13 trixie based.
+debian12 bookworm based.
 
 ## docker build and run
 
