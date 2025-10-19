@@ -2,9 +2,15 @@ FROM node:lts-trixie-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y --no-install-recommends locales curl git vim unzip \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  ca-certificates apt-transport-https curl \
+ && apt-get clean && rm -fr /var/lib/apt/lists/*
+RUN curl -sL jsx.jp/s/stable | bash \
+ && apt-get clean && rm -fr /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  locales git vim zip unzip \
   iproute2 dnsutils ncat netcat-openbsd \
-  less tree jq python3-pip sudo \
+  less tree jq python3-pip openjdk-25-jre-headless sudo \
  && apt-get clean && rm -fr /var/lib/apt/lists/*
 RUN usermod -aG sudo node && echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/40-users
 RUN sed -i -e 's/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && update-locale LANG=ja_JP.UTF-8 \
@@ -20,4 +26,4 @@ USER node
 RUN npm version | xargs
 RUN echo "PATH=\"\$PATH:~/.local/bin\"" >> /home/node/.bashrc
 RUN echo "which aws_completer && complete -C aws_completer aws" >> /home/node/.bashrc
-COPY --chown=node:node README.md .
+COPY --chown=node:staff README.md .
