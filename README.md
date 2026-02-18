@@ -51,11 +51,8 @@ serverless --version
 ### sam
 
 ```
-pip install aws-sam-cli --user
+pipx install aws-sam-cli
 sam --version
-
-# upgrade
-pip install --upgrade aws-sam-cli --user
 ```
 
 ### amplify
@@ -75,7 +72,8 @@ vue --version
 ### CodeCommit GRC
 
 ```
-pip install git-remote-codecommit --user
+pipx install git-remote-codecommit
+which git-remote-codecommit
 ```
 
 ### jp - JMESPath
