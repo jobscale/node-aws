@@ -53,6 +53,9 @@ serverless --version
 ```
 pipx install aws-sam-cli
 sam --version
+
+# upgrade
+pipx upgrade aws-sam-cli
 ```
 
 ### amplify
@@ -74,6 +77,9 @@ vue --version
 ```
 pipx install git-remote-codecommit
 which git-remote-codecommit
+
+# upgrade
+pipx upgrade git-remote-codecommit
 ```
 
 ### jp - JMESPath
